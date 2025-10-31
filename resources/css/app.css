@@ -162,3 +162,49 @@ button {
 .product-table button:hover {
     opacity: 0.8;
 }
+/* Produktu parādīšanas lapa */
+.product-show {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-show h1 {
+    margin-bottom: 1rem;
+    color: #4caf50;
+}
+
+.product-field {
+    margin-bottom: 1rem;
+}
+
+.product-field p {
+    margin: 0.5rem 0 0 0;
+}
+
+.product-actions {
+    margin-top: 2rem;
+}
+
+.product-actions .button,
+.product-actions button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.product-actions button {
+    background: #f44336;
+}
+
+.product-actions .button:hover,
+.product-actions button:hover {
+    opacity: 0.8;
+}
