@@ -28,7 +28,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return view("products.index");
+        $validation = $request->validate([
+            'name' => 'required|string|max:255',
+            'quantity' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+            'expiration_date' => 'required|date',
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        Product::create($validation);
+
+        return redirect()->route('product.index')->with('success', 'Product created successfully!');
     }
 
     /**
