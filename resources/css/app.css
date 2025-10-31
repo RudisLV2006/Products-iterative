@@ -105,3 +105,19 @@ button {
     background: #fff;
     overflow-y: auto;
 }
+/* Header */
+.header {
+    grid-area: header;
+    background: #4caf50;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Limit logo size */
+.header img {
+    max-height: 50px; /* logo will not be taller than 50px */
+    max-width: 150px; /* logo will not be wider than 150px */
+    width: auto; /* maintain aspect ratio */
+    height: auto; /* maintain aspect ratio */
+}
