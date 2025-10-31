@@ -1,10 +1,7 @@
 <x-layout title="Produktu saraksts">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
+    <x-flash-message />
+    
     <h1>Produktu saraksts</h1>
 
     <table class="product-table">

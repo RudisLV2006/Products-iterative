@@ -8,7 +8,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-
     <header class="header">
             <a href="/">
                 <img src="{{ $logo ?? 'https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png' }}" alt="Logo">

@@ -39,7 +39,9 @@ class ProductController extends Controller
 
         Product::create($validation);
 
-        return redirect()->route('product.index')->with('success', 'Product created successfully!');
+        session()->flash("success", "Produkts veiksmīgi pievienots!");
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -74,7 +76,9 @@ class ProductController extends Controller
 
         $product->update($validation);
 
-        return redirect()->route('product.index')->with('success', 'Product updated!');
+        session()->flash("success", "Produkts veiksmīgi atjaunots!");
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -83,6 +87,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index')->with('success', 'Product deleted!');
+
+        session()->flash("success", "Produkts veiksmīgi izdzēsts!");
+
+        return redirect()->route('product.index');
     }
 }
