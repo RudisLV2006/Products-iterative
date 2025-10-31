@@ -9,14 +9,17 @@
 </head>
 <body>
 
-    <!-- Navigācija -->
-    <nav style="background: #f5f5f5; padding: 1em;">
-        <a href="{{ route('product.index') }}">Produkti</a> |
-        <a href="{{ route('product.create') }}">Pievienot produktu</a>
-    </nav>
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="{{ route('product.index') }}">Produkti</a></li>
+                <li><a href="{{ route('product.create') }}">Pievienot produktu</a></li>
+            </ul>
+        </nav>
 
-    <main style="padding: 2em;">
-        {{ $slot }}
-    </main>
+        <main class="main-content">
+            {{ $slot }}
+        </main>
+    </div>
 </body>
 </html>
