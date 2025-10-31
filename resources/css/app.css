@@ -1,0 +1,74 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    height: 100vh;
+}
+
+header {
+    grid-area: header;
+    background: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+nav {
+    grid-area: nav;
+    background: #f4f4f4;
+    padding: 1rem;
+}
+
+main {
+    grid-area: main;
+    padding: 1rem;
+    background: #fff;
+    overflow-y: auto;
+}
+
+aside {
+    grid-area: aside;
+    background: #f4f4f4;
+    padding: 1rem;
+}
+
+footer {
+    grid-area: footer;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Formas stils */
+form div {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
