@@ -225,3 +225,67 @@ button {
 .quantity-buttons button:hover {
     background-color: #ddd;
 }
+
+#addTagsForm {
+    background: #f9f9f9; /* Light background for the form */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    max-width: 600px; /* Max width for a better layout */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form Group */
+#addTagsForm .form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form Label */
+#addTagsForm label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+    display: block;
+}
+
+/* Input Field */
+#addTagsForm input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+    outline: none; /* Removes default outline */
+    transition: border-color 0.3s ease;
+}
+
+/* Input Hover and Focus Styles */
+#addTagsForm input[type="text"]:hover,
+#addTagsForm input[type="text"]:focus {
+    border-color: #4caf50; /* Green border on hover/focus */
+}
+
+/* Submit Button */
+#addTagsForm button[type="submit"] {
+    background: #4caf50; /* Green background for the button */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem; /* Space between the input and the button */
+    width: 100%; /* Make button full width */
+}
+
+/* Submit Button Hover */
+#addTagsForm button[type="submit"]:hover {
+    background-color: #45a049; /* Darker green when hovered */
+}
