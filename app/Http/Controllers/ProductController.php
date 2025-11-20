@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
     /**
@@ -92,4 +92,25 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
     }
+
+public function updateQuantity(Request $request, $id, $action)
+{
+    // Atrodam produktu
+    $product = Product::findOrFail($id);
+
+    // Apstrādājam darbības
+    if ($action === 'increase') {
+        $product->increaseQuantity(); // Izmanto metodi, lai palielinātu daudzumu
+    } elseif ($action === 'decrease') {
+        $product->decreaseQuantity(); // Izmanto metodi, lai samazinātu daudzumu
+    }
+
+    // Atgriežam JSON atbildi ar jauniem datiem (piemēram, jauns daudzums)
+    return response()->json([
+        'quantity' => $product->quantity,  // Jaunais daudzums
+        'success' => true
+    ]);
+}
+
+
 }

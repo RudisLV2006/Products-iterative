@@ -12,10 +12,12 @@ class ProductControllerUnitTest extends TestCase
 {
     protected function tearDown(): void
     {
-        Mockery::close(); // Close all mocks after each test
+        // Close all Mockery mocks and verify expectations
+        Mockery::close();
         parent::tearDown();
     }
 
+    /** @test */
     public function test_store_calls_create_with_valid_data()
     {
         $requestData = [
@@ -29,13 +31,18 @@ class ProductControllerUnitTest extends TestCase
         $request = Mockery::mock(Request::class);
         $request->shouldReceive('validate')->once()->andReturn($requestData);
 
-        $productMock = Mockery::mock('alias:' . Product::class);
+        // Use overload for static create, only once per test
+        $productMock = Mockery::mock('overload:' . Product::class);
         $productMock->shouldReceive('create')->once()->with($requestData);
 
         $controller = new ProductController();
         $controller->store($request);
+
+        // Dummy assertion so PHPUnit counts the test
+        $this->assertTrue(true);
     }
 
+    /** @test */
     public function test_update_calls_update_on_product()
     {
         $requestData = [
@@ -49,19 +56,26 @@ class ProductControllerUnitTest extends TestCase
         $request = Mockery::mock(Request::class);
         $request->shouldReceive('validate')->once()->andReturn($requestData);
 
+        // Mock an instance, no alias needed
         $product = Mockery::mock(Product::class);
         $product->shouldReceive('update')->once()->with($requestData);
 
         $controller = new ProductController();
         $controller->update($request, $product);
+
+        $this->assertTrue(true);
     }
 
+    /** @test */
     public function test_destroy_calls_delete_on_product()
     {
+        // Mock an instance, no alias needed
         $product = Mockery::mock(Product::class);
         $product->shouldReceive('delete')->once();
 
         $controller = new ProductController();
         $controller->destroy($product);
+
+        $this->assertTrue(true);
     }
 }

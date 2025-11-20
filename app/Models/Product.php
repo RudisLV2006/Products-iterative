@@ -16,4 +16,21 @@ class Product extends Model
     protected $casts = [
         'expiration_date' => 'datetime', // ✅ ensures Carbon instance
     ];
+
+    public function increaseQuantity()
+    {
+        $this->quantity += 1;
+        $this->save();
+    }
+
+    /**
+     * Samazina produkta daudzumu par 1, ja tas ir lielāks par 0.
+     */
+    public function decreaseQuantity()
+    {
+        if ($this->quantity > 0) {
+            $this->quantity -= 1;
+            $this->save();
+        }
+    }
 }
