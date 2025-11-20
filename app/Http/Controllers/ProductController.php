@@ -93,10 +93,11 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-public function updateQuantity(Request $request, $id, $action)
+public function updateQuantity(Request $request, $id)
 {
     // Atrodam produktu
     $product = Product::findOrFail($id);
+    $action = $request->input('action');
 
     // Apstrādājam darbības
     if ($action === 'increase') {
@@ -104,7 +105,7 @@ public function updateQuantity(Request $request, $id, $action)
     } elseif ($action === 'decrease') {
         $product->decreaseQuantity(); // Izmanto metodi, lai samazinātu daudzumu
     }
-
+    
     // Atgriežam JSON atbildi ar jauniem datiem (piemēram, jauns daudzums)
     return response()->json([
         'quantity' => $product->quantity,  // Jaunais daudzums

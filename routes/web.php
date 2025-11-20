@@ -15,5 +15,5 @@ Route::get('/product/{product}', [ProductController::class, "show"])->name("prod
 Route::post('/product', [ProductController::class, "store"])->name("product.store");
 Route::get('/product/edit/{product}', [ProductController::class, "edit"])->name("product.edit");
 Route::put('/product/edit/{product}', [ProductController::class, "update"])->name("product.update");
-Route::post('/product/{id}/{action}', [ProductController::class, 'updateQuantity'])->name('product.updateQuantity');
+Route::post('/product/{id}', [ProductController::class, 'updateQuantity'])->name('product.updateQuantity');
 Route::delete('/product/{product}', [ProductController::class, "destroy"])->name("product.destroy");

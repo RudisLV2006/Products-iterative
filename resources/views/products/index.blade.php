@@ -20,17 +20,16 @@
             <tr>
                 <td>{{ $product->name }}</td>
                 <td>
-    <span class="quantity" data-id="{{ $product->id }}">{{ $product->quantity }}</span>                    <div class="quantity-buttons">
+    <span class="quantity" data-id="{{ $product->id }}">{{ $product->quantity }}</span>                    
+    <div class="quantity-buttons">
     <form action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'increase']) }}" 
           method="POST" 
-          style="display:inline;" 
           data-id="{{ $product->id }}"> <!-- Šeit pievienojam data-id -->
         @csrf
         <button type="submit">+</button>
     </form>
     <form action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'decrease']) }}" 
           method="POST" 
-          style="display:inline;" 
           data-id="{{ $product->id }}"> <!-- Šeit pievienojam data-id -->
         @csrf
         <button type="submit">-</button>

@@ -1,44 +1,27 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Poga + un -
-    document.querySelectorAll('.quantity-buttons button').forEach(function(button) {
-        button.addEventListener('click', function(e) {
-            e.preventDefault(); // Novērš formu sūtīšanu
+// Select all quantity buttons (increase and decrease forms)
+document.querySelectorAll(".quantity-buttons form").forEach((form) => {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
 
-            // Pārliecināmies, ka `data-id` tiek pareizi iegūts
-            var form = button.closest('form'); // Atrodam formu, kurā ir poga
-            var productId = form ? form.dataset.id : undefined; // Iegūstam `data-id` no formas
+        const formData = new FormData(form); // Create FormData object from the form
 
-            // Ja produkta ID nav definēts, izdrukājam kļūdu
-            if (!productId) {
-                console.error('Product ID is not defined!');
-                return; // Ja nav ID, pārtraucam izpildi
-            }
-
-            var action = button.textContent === '+' ? 'increase' : 'decrease';
-
-            // Nosūtām AJAX pieprasījumu uz serveri
-            fetch('/product/' + productId + '/' + action, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Pārbaudiet, kas tiek atgriezts
+        // Send the form data via fetch
+        fetch(form.action, {
+            method: "POST",
+            body: formData, // FormData includes the CSRF token automatically
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response (e.g., update quantity displayed in the UI)
                 if (data.success) {
-                    // Atjaunojam daudzumu tabulā
-                    document.querySelector('.quantity[data-id="' + productId + '"]').textContent = data.quantity;
-                } else {
-                    alert('Kļūda! Daudzums netika atjaunots.');
+                    const quantitySpan = document.querySelector(
+                        '.quantity[data-id="' + form.dataset.id + '"]'
+                    );
+                    quantitySpan.textContent = data.quantity; // Update the displayed quantity
                 }
             })
-            .catch(error => {
-                console.error('Error:', error); // Logojiet kļūdu
-                alert('Kļūda! Mēģiniet vēlreiz.');
+            .catch((error) => {
+                console.error("Error:", error);
             });
-        });
     });
 });
