@@ -22,13 +22,13 @@
                 <td>
     <span class="quantity" data-id="{{ $product->id }}">{{ $product->quantity }}</span>                    
     <div class="quantity-buttons">
-    <form action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'increase']) }}" 
+    <form class="quantity-form" action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'increase']) }}" 
           method="POST" 
           data-id="{{ $product->id }}"> <!-- Šeit pievienojam data-id -->
         @csrf
         <button type="submit">+</button>
     </form>
-    <form action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'decrease']) }}" 
+    <form class="quantity-form" action="{{ route('product.updateQuantity', ['id' => $product->id, 'action' => 'decrease']) }}" 
           method="POST" 
           data-id="{{ $product->id }}"> <!-- Šeit pievienojam data-id -->
         @csrf
@@ -43,7 +43,7 @@
                 <td>
                     <a href="{{ route('product.show', $product->id) }}">Apskatīt</a>
                     <a href="{{ route('product.edit', $product->id) }}">Rediģēt</a>
-                    <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline-block;">
+                    <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Vai tiešām dzēst?')">Dzēst</button>

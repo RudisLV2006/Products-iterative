@@ -1,5 +1,5 @@
 // Select all quantity buttons (increase and decrease forms)
-document.querySelectorAll(".quantity-buttons form").forEach((form) => {
+document.querySelectorAll(".quantity-form").forEach((form) => {
     form.addEventListener("submit", function (e) {
         e.preventDefault(); // Prevent default form submission
 
