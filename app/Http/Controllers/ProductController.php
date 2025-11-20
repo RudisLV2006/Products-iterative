@@ -146,4 +146,14 @@ public function addTags(Request $request, $id)
     return redirect()->route('product.show', $product->id)->with('success', 'Tagi veiksmīgi pievienoti!');
 }
 
+public function search(Request $request)
+{
+    $term = $request->input('term');
+    $tags = Tag::where('name', 'like', '%' . $term . '%')->get()->pluck('name');
+    return response()->json($tags);
+}
+
+
+
+
 }

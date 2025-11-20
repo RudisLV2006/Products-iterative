@@ -49,12 +49,14 @@
     @csrf
     <div class="form-group">
         <label for="tags">Pievienot tagus:</label>
-        <input type="text" name="tags" id="tags" class="form-control" placeholder="Ievadiet tagus, atdalot ar komatiem" />
+        <input type="text" name="tags" id="tags" class="form-control" placeholder="Ievadiet tagus" />
         <small>Atdaliet tagus ar komatiem.</small>
     </div>
+    <ul id="tagList"></ul>
     <button type="submit" class="btn btn-primary">Pievienot tagus</button>
 </form>
 
+@vite(['resources/js/app.js'])
 
 
     </div>

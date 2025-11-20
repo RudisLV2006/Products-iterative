@@ -20,3 +20,4 @@ Route::delete('/product/{product}', [ProductController::class, "destroy"])->name
 
 
 Route::post('products/{product}/add-tags', [ProductController::class, 'addTags'])->name('product.addTags');
+Route::get('/tags/search', [ProductController::class, 'search'])->name('tags.search');
