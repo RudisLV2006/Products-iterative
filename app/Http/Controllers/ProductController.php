@@ -118,33 +118,35 @@ public function updateQuantity(Request $request, $id)
 
 public function addTags(Request $request, $id)
 {
-     $request->validate([
-        'tags' => 'required|string', // Ensure there's a string of tags provided
+    // Adjust validation to allow empty tags
+    $request->validate([
+        'tags' => 'nullable|string',
     ]);
 
-    // Get the product
+    // Log the received tags for debugging
+    Log::info('Tags received: ', [$request->tags]);
+
     $product = Product::findOrFail($id);
 
-    // Split the input tags into an array, trimming spaces and removing empty values
-    $tagNames = array_filter(array_map('trim', explode(',', $request->tags)));
+    // Split tags and filter out empty values
+$tagNames = array_filter(array_map('trim', explode(',', $request->tags)));
 
-    // Create or get existing tags
-    $tags = collect(); // Initialize an empty collection to store tags
-
-    foreach ($tagNames as $tagName) {
-        // Trim spaces and ensure it's not empty
-        if (!empty($tagName)) {
-            // Find the tag by name or create it if it doesn't exist
-            $tags->push(Tag::firstOrCreate(['name' => $tagName]));
-        }
+// Create or get existing tags
+$tags = collect();
+foreach ($tagNames as $tagName) {
+    if (!empty($tagName)) {
+        $tags->push(Tag::firstOrCreate(['name' => $tagName]));
     }
-
-    // Attach the tags to the product (associating them)
-    $product->tags()->syncWithoutDetaching($tags->pluck('id')->toArray());
-
-    // Redirect back with a success message
-    return redirect()->route('product.show', $product->id)->with('success', 'Tagi veiksmīgi pievienoti!');
 }
+
+// Attach the tags to the product
+$product->tags()->syncWithoutDetaching($tags->pluck('id')->toArray());
+
+
+    return redirect()->route('product.show', $product->id)
+        ->with('success', 'Tagi veiksmīgi pievienoti!');
+}
+
 
 public function search(Request $request)
 {
@@ -152,8 +154,5 @@ public function search(Request $request)
     $tags = Tag::where('name', 'like', '%' . $term . '%')->get()->pluck('name');
     return response()->json($tags);
 }
-
-
-
 
 }
